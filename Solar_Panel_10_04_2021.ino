@@ -6,12 +6,12 @@
 #define MAX_ANGLE_105 597
 
 ////////// OHM METTER //////////////////////////////////////
-const int sensorPin = A5;  // Analog input pin that senses Vout
-int sensorValue = 0;       // sensorPin default value
-float Vin = 5;             // Input voltage
-float Vout = 0;            // Vout default value
-float Rref = 2200;          // Reference resistor's value in ohms (you can give this value in kiloohms or megaohms - the resistance of the tested resistor will be given in the same units)
-float R = 0;               // Tested resistors default value
+const int sensorPin = A5;
+int sensorValue = 0;
+float Vin = 5;
+float Vout = 0;
+float Rref = 2200;
+float R = 0;
 //////////////////////////////////////////////////////////////
 
 int step_number = 0;
