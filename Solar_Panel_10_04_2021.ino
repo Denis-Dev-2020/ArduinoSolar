@@ -2,6 +2,8 @@
 #define STEPPER_PIN_2 10
 #define STEPPER_PIN_3 11
 #define STEPPER_PIN_4 12
+#define STOPPER101 8
+#define STOPPER102 7
 #define SCANNER_INDICATOR_LED 13
 #define MAX_ANGLE_105 597
 
@@ -41,8 +43,6 @@ pinMode(STEPPER_PIN_3, OUTPUT);
 pinMode(STEPPER_PIN_4, OUTPUT);
 pinMode(SCANNER_INDICATOR_LED, OUTPUT);
 }
-
-
 void loop() {
   Serial.begin(9600);
   PrintOhmMeter();
@@ -58,11 +58,11 @@ void StartWorking(){
       //Serial.println(MostEfficientPlace);
       for(int GoingBackForMostEfficientPlace = 0 ; GoingBackForMostEfficientPlace < 16 ; GoingBackForMostEfficientPlace++){
             OneStep(true);
-            delay(2);
+            delay(20);
       }
       for(int GoingFowardForMostEfficientPlace = 0 ; GoingFowardForMostEfficientPlace < MostEfficientPlace ; GoingFowardForMostEfficientPlace++){
             OneStep(false);
-            delay(2);
+            delay(20);
       }
             digitalWrite(SCANNER_INDICATOR_LED, HIGH);
 ////////////// STAY ON EFFICIENT PLACE TEMPO /////////
@@ -93,6 +93,20 @@ void StartWorking(){
   }
 ////////////////////////////////////////////////////// 
 }
+
+int ScanForStopper () {
+  int stopFlag = 0;
+  if (STOPPER101 == 1) {
+    Serial.println("Stop 1");
+    stopFlag = 1;
+  }
+    if (STOPPER102 == 1) {
+      Serial.println("Stop 2");
+      stopFlag = 1;
+  }
+}
+
+
 int ScanForMaxWatt(){
   for (int i = 0 ; i < 16 ; i++){
     OneStep(true);
