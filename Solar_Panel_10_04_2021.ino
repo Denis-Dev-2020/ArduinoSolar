@@ -57,29 +57,29 @@ void StartWorking(){
       //Serial.println(MostEfficientPlace);
       for(int GoingBackForMostEfficientPlace = 0 ; GoingBackForMostEfficientPlace < 16 ; GoingBackForMostEfficientPlace++){
             OneStep(true);
-            delay(2);
+            delay(20);
       }
       for(int GoingFowardForMostEfficientPlace = 0 ; GoingFowardForMostEfficientPlace < MostEfficientPlace ; GoingFowardForMostEfficientPlace++){
             OneStep(false);
-            delay(2);
+            delay(20);
       }
             digitalWrite(SCANNER_INDICATOR_LED, HIGH);
 ////////////// STAY ON EFFICIENT PLACE TEMPO /////////
-            delay(50);
+            delay(500);
 //////////////////////////////////////////////////////
             digitalWrite(SCANNER_INDICATOR_LED, LOW);
       for(int GoingBackFromForMostEfficientPlace = 0 ; GoingBackFromForMostEfficientPlace < MostEfficientPlace ; GoingBackFromForMostEfficientPlace++){
             OneStep(true);
-            delay(2);
+            delay(20);
       }
       for(int GoingToWhereWeLeft = 0 ; GoingToWhereWeLeft < 16 ; GoingToWhereWeLeft++){
             OneStep(false);
-            delay(2);
+            delay(20);
       } 
     }
     OneStep(false);
 //////////////// DAYTIME TEMPO //////////////////////
-    delay(2);
+    delay(20);
 /////////////////////////////////////////////////////
   }
   ReadPrintStatsSolar();
@@ -95,7 +95,7 @@ void StartWorking(){
 int ScanForMaxWatt(){
   for (int i = 0 ; i < 16 ; i++){
     OneStep(true);
-    delay(2);
+    delay(20);
   }
   for (int i = 0 ; i < 32 ; i++){
     digitalWrite(SCANNER_INDICATOR_LED, HIGH);
@@ -103,12 +103,12 @@ int ScanForMaxWatt(){
     OneStep(false);
     digitalWrite(SCANNER_INDICATOR_LED, LOW);
 ////////////////// SCANNING TEMPO ////////////////////
-    delay(10);
+    delay(100);
 //////////////////////////////////////////////////////
   }
   for (int i = 0 ; i < 16 ; i++){
     OneStep(true);
-    delay(2);
+    delay(20);
   } 
   //PrintArray(ScanRadar,32);
   return ReadMaxFromArray(ScanRadar,32);
