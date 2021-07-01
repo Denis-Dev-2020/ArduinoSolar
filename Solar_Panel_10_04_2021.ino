@@ -149,6 +149,7 @@ void ReadPrintTourbineStat (){
 }
 void ReadPrintStatsSolar (){
   VoltageRead = 0;
+  AmperageRead = 0;
   AnalogRead1 = analogRead(analogPin1);
   VoltageRead = AnalogRead1;
   PanelVoltArray[0] = (VoltageRead/1023)*5;
