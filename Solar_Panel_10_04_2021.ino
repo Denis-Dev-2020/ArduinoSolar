@@ -2,20 +2,11 @@
 #define STEPPER_PIN_2 10
 #define STEPPER_PIN_3 11
 #define STEPPER_PIN_4 12
-#define STOPPER101 8
-#define STOPPER102 7
 #define SCANNER_INDICATOR_LED 13
 #define MAX_ANGLE_105 597
 
-////////// OHM METTER //////////////////////////////////////
-const int sensorPin = A5;
-int sensorValue = 0;
-float Vin = 5;
-float Vout = 0;
-float Rref = 2200;
-float R = 0;
-//////////////////////////////////////////////////////////////
 
+void setup() {
 int step_number = 0;
 double VoltageRead = 0;
 double AmperageRead = 0;
@@ -36,24 +27,43 @@ int AnalogRead3 = 0;
 int analogTourbinePin4 = A3;
 int analogTourbine = 0;
 ///////////////////////////////////////////////////
-void setup() {
 pinMode(STEPPER_PIN_1, OUTPUT);
 pinMode(STEPPER_PIN_2, OUTPUT);
 pinMode(STEPPER_PIN_3, OUTPUT);
 pinMode(STEPPER_PIN_4, OUTPUT);
 pinMode(SCANNER_INDICATOR_LED, OUTPUT);
 }
+////////// OHM METTER //////////////////////////////////////
+const int sensorPin = A5;
+int sensorValue = 0;
+float Vin = 5;
+float Vout = 0;
+float Rref = 2200;
+float R = 0;
+//////////////////////////////////////////////////////////////
+
+
 void loop() {
   Serial.begin(9600);
-  PrintOhmMeter();
+
   StartWorking();
 }
+
+
+
+
+
+
+
+
+
+
 
 
 void StartWorking(){
   int MostEfficientPlace = 0;
   for (int i = 0 ; i < MAX_ANGLE_105 ; i++){
-    if(i%100 == 0){
+    if(i%105 == 0){
       MostEfficientPlace = ScanForMaxWatt();
       //Serial.println(MostEfficientPlace);
       for(int GoingBackForMostEfficientPlace = 0 ; GoingBackForMostEfficientPlace < 16 ; GoingBackForMostEfficientPlace++){
@@ -66,7 +76,7 @@ void StartWorking(){
       }
             digitalWrite(SCANNER_INDICATOR_LED, HIGH);
 ////////////// STAY ON EFFICIENT PLACE TEMPO /////////
-            delay(50);
+            delay(1000);
 //////////////////////////////////////////////////////
             digitalWrite(SCANNER_INDICATOR_LED, LOW);
       for(int GoingBackFromForMostEfficientPlace = 0 ; GoingBackFromForMostEfficientPlace < MostEfficientPlace ; GoingBackFromForMostEfficientPlace++){
